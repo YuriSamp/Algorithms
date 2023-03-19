@@ -1,3 +1,7 @@
+//essa estrutura junto com linked list é bem complicada de entender então sugiro procurar um video
+// ou artigo pra ver melhor ela, depois vem aqui no código, de novo não vou comentar porque
+// não me sinto a vontade o suficiente pra conseguir ensinar isso a alguem
+
 class MinHeap {
   private length: number;
   private data: number[];

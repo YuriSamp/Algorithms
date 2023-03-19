@@ -2,6 +2,11 @@ function CreateNode<V>(value: V): node<V> {
   return { value };
 }
 
+//Essa é uma estrutura que quarda o valor que foi utilizado mais recentemente
+// Existem outras estruturas de cache, mas não pretendio ir muito a fundo no tema
+
+//Ela se comporta de forma muito parecida com uma linked list
+// então vou só comentar as diferenças
 class LRU<V, K> {
   private length: number;
   private head?: node<V>;
@@ -16,6 +21,7 @@ class LRU<V, K> {
     this.lookup = new Map<K, node<V>>();
     this.ReveseLookup = new Map<node<V>, K>();
   }
+
   update(key: K, value: V): void {
     let node = this.lookup.get(key);
     if (!node) {
@@ -43,6 +49,9 @@ class LRU<V, K> {
     return node.value;
   }
 
+  //Esse metodo retira o item da linked list e garante que
+  // o node anterior e o node posterior vão estabelecer a conexão
+  // sem perder nenhuma informação na lista
   private detach(node: node<V>) {
     if (node.prev) {
       node.prev.next = node.next;
@@ -64,20 +73,30 @@ class LRU<V, K> {
     node.prev = undefined;
   }
 
+  //Metodo para colocar o item no topo da lista
   private prepend(node: node<V>) {
+    //Verifica se exite algum item na lista
     if (!this.head) {
       this.head = this.head = node;
       return;
     }
+    //Caso exista, troca as ligações e estabelece
+    //esse novo item no topo da lista
     node.next = this.head;
     this.head.prev = node;
   }
 
+  //Esse metodo aqui é legal, ele garante que a gente nunca exceda o tamanho do cache
   private trimCache(): void {
+    //Se ainda estiver menor que a capacidade total, pode continuar
     if (this.length <= this.capacity) {
       return;
     }
+    //Caso contrario a gente começa a desestruturar
     const tail = this.tail as node<V>;
+
+    //Jogamos o ultimo item pra um limbo e diminuimos
+    // o tamanho da lista pra ficar igual ao do cache
     this.detach(this.tail as node<V>);
     const key = this.ReveseLookup.get(tail) as K;
     this.lookup.delete(key);

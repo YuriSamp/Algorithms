@@ -1,3 +1,7 @@
+//Essa implementação da Linked List eu fiz só pra ter uma noção maior de como funciona por debaixo dos panos
+//Caso esteja vendo isso e não conheça o que é uma linked List, é bem difícil de entender
+// portanto eu não vou comentar muito porque não me sinto a vontade o suficiente pra conseguir ensinar isso a alguem
+
 class DoubleLinkedList<T> {
   private length: number;
   private head?: node<T>;

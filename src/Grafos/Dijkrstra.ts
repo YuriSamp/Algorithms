@@ -1,5 +1,9 @@
-// Pra melhorar o run time, pode usar o minHeap, entretanto eu ainda n sei fazer isso
+// Pra melhorar o runTime, podemos usar o minHeap, entretanto eu ainda n sei fazer isso
 // Conheço apenas a estrutura, e não como combina-la com algoritmos
+
+//Esse eu também não me sinto muito confortavel de explicar
+//Até porque eu não conseguiria fazer ele sozinho, mas não é dificil
+//Em todas as fontes que eu citei explica ele
 
 export {};
 
